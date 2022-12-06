@@ -12,8 +12,10 @@ public class SettingsView {
 
     private final SelenideElement displaySettingsButton =  $(MobileBy.xpath("(//android.widget.TextView[@text=\"Display\"])"));
 
-    @Step
+    @Step("Verify display settings view")
     public void pushDisplayButton() {
-        displaySettingsButton.should(Condition.visible).click();
+        if(displaySettingsButton.isDisplayed()) {
+            displaySettingsButton.click();
+        }
     }
 }

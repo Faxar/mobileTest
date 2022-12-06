@@ -15,15 +15,12 @@ public interface EmulatorConfig extends Config {
     @Key("platformName")
     String platformName();
 
-    @Key("appPackage")
-    String appPackage();
-
-    @Key("appActivity")
-    String appActivity();
-
     @Key("app")
     String app();
 
     @Key("remoteURL")
     String remoteURL();
+
+    @Key("automationName")
+    String automationName();
 }

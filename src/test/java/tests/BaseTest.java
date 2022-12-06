@@ -2,12 +2,14 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import io.qameta.allure.Allure;
+import io.qameta.allure.selenide.AllureSelenide;
 
 import static helper.DeviceHelper.executeBash;
 import static helper.RunHelper.runHelper;
@@ -18,6 +20,7 @@ public class BaseTest {
 
     @BeforeAll
     public static void setup() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(false).savePageSource(true));
         Configuration.browser = runHelper().getDriverClass().getName();
         Configuration.startMaximized = false;
         Configuration.browserSize = null;
@@ -38,6 +41,7 @@ public class BaseTest {
 
     @AfterEach
     public void afterEach() {
+        SelenideLogger.removeListener("allure");
         step("Close app", Selenide::closeWebDriver);
     }
 }

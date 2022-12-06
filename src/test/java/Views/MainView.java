@@ -11,16 +11,17 @@ import static com.codeborne.selenide.Selenide.$;
 public class MainView {
 
     private final SelenideElement settingsButton = $(MobileBy.AccessibilityId("Settings"));
-    private final SelenideElement messageButton = $(MobileBy.AccessibilityId("Messages"));
 
-    @Step
-    public void pushMessageButton() {
-        messageButton.should(Condition.visible).click();
+    @Step("Verify settings button")
+    public void verifyAndClickSettingsButton() {
+        if (settingsButton.isDisplayed()) {
+            clickSettingsButton();
+        }
     }
 
-    @Step
-    public void pushSettingsButton() {
-        settingsButton.should(Condition.visible).click();
+    @Step("Click on the setting button")
+    private void clickSettingsButton() {
+        settingsButton.click();
     }
 
 }
